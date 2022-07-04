@@ -1,0 +1,39 @@
+﻿@model Statii
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Deleting Station</h2>
+
+<h3>Would you like to continue?</h3>
+<div class="container p-3 my-3 border">
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Nume)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(m => m.Nume)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Oras)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(m => m.Oras)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Adresa)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(m => m.Adresa)
+            </dd>
+        </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="IdStatie" />
+                <input class="btn btn-primary" type="submit" value="Yes" />
+                <a class="btn btn-danger" asp-action="GetStatii">No</a>
+            </form>
+
+ </div>

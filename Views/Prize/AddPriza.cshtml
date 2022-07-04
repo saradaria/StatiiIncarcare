@@ -1,0 +1,17 @@
+﻿@using StatiiIncarcare.Models.ViewModels
+
+@model AddPlugModel
+
+
+<h2>Create New Plug</h2>
+<form  asp-controller = "PrizeController" asp-action = "AddPriza" method="post" class ="mt-3">
+    <select asp-for = "IdTip">
+       @foreach(var item in Model.TipPrize)
+       {
+           <option value ="@item.IdTip">@item.Nume </option>
+       }
+    </select>
+    <input readonly asp-for = "IdStatie" hidden >
+   
+    <p><button type="submit">Submit</button></p>
+</form>
