@@ -36,7 +36,7 @@
                     <tr> 
                         <td>@priza.IdPriza</td>
                         <td>@priza.IdTipNavigation.Nume</td>  
-                        <td> <a asp-action="Rezervare" asp-route-id="@priza.IdPriza">Rezervare</a></td>
+                        <td> <a asp-controller = "Booking" asp-action="NewBooking" asp-route-idPriza="@priza.IdPriza">Rezervare</a></td>
                     </tr>  
                 }  
             </tbody>  
@@ -44,7 +44,8 @@
     </div>  
 </body>  
 
-<a  asp-controller = "Prize" asp-action="AddPriza" asp-route-id="@Model.IdStatie">Adauga priza</a>
+<a  asp-controller = "Prize" asp-action="AddPriza" asp-route-idStatie="@Model.IdStatie">Adauga priza</a>
+
      
 </html>  
 

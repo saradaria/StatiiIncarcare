@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Statii>
+@using (Html.BeginForm())
+{
+    <p>
+        Find : @Html.TextBox("SearchString")  
+        <input type="submit" value="Search" />
+    </p>
+ 
+}
+

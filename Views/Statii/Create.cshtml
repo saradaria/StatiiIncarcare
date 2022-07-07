@@ -6,14 +6,20 @@
     <p>
         <label asp-for="Nume">Nume:</label>
         <input asp-for="Nume" />
+        <span asp-validation-for ="Nume"
+            class ="text-danger"></span>
     </p>
     <p>
         <label asp-for="Oras">Oras:</label>
         <input asp-for="Oras" />
+        <span asp-validation-for ="Oras"
+            class ="text-danger"></span>
     </p>
      <p>
         <label asp-for="Adresa">Adresa:</label>
         <input asp-for="Adresa" />
+        <span asp-validation-for ="Adresa"
+            class ="text-danger"></span>
     </p>
    
     <p><button type="submit">Submit</button></p>

@@ -8,21 +8,25 @@ namespace StatiiIncarcare.Controllers
     public class PrizeController : Controller
     {
         private readonly IncarcareStatiiContext  _incarcareStatiiContext;
+        private AddPlugModel _addPlugView;
 
         public PrizeController(IncarcareStatiiContext context)
         {
             _incarcareStatiiContext = context;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
 
         public IActionResult AddPriza(int idStatie)
         {
-            var addPriza = new AddPlugModel()
-            {
-                IdStatie = idStatie,
-                TipPrize = _incarcareStatiiContext.Tips.ToList()
-            };
+            var addPriza = new AddPlugModel();
 
+            addPriza.IdStatie = idStatie;
+            addPriza.TipPrize = _incarcareStatiiContext.Tips.ToList();
             return View(addPriza);
         }
 
@@ -41,3 +45,5 @@ namespace StatiiIncarcare.Controllers
 
     }
 }
+
+

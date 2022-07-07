@@ -37,15 +37,10 @@ namespace StatiiIncarcare.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Statii statieDelete)
         {
-            var statie = _IncarcareStatiiContext.Statiis.Where(p => p.IdStatie == id).FirstOrDefault();
-            if(statie == null)
-            {
-                return NotFound();
-            }
-            await _statiiRepository.Delete(statie);
-            return View("Thanks_Delete",statie);
+            await _statiiRepository.Delete(statieDelete);
+            return View("Thanks_delete", statieDelete);
         }
 
         public ActionResult Details(int id)
@@ -99,6 +94,35 @@ namespace StatiiIncarcare.Controllers
         {
             await _statiiRepository.Create(statie);
             return View("Thanks_add", statie);
+        }
+
+        public ViewResult Filter(string sortOrder, string searchString)
+        {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Oras" : "";
+            var statii= from s in _IncarcareStatiiContext.Statiis
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                statii = statii.Where(s => s.Oras.Contains(searchString) );
+            }
+            
+            switch (sortOrder)
+            {
+                case "Oras":
+                    statii = statii.OrderBy(s => s.Oras);
+                    break;
+                case "Nume":
+                    statii = statii.OrderBy(s => s.Nume);
+                    break;
+                case "Adresa":
+                    statii = statii.OrderBy(s => s.Adresa);
+                    break;
+                default:
+                    statii = statii.OrderBy(s => s.Oras);
+                    break;
+            }
+
+            return View(statii.ToList());
         }
     }
 }

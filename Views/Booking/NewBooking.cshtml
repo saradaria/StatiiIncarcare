@@ -1,0 +1,32 @@
+﻿@model StatiiIncarcare.Models.ViewModels.AddBooking;
+
+@{
+    ViewData["Title"] = "Noua rezervare";
+}
+
+
+<h2>Rezervare noua</h2>
+<form  asp-controller = "Booking" asp-action = "NewBooking" method="post" class ="mt-3">
+    <p>
+        <label asp-for="TimeIn">Start Date:</label>
+        <input asp-for="TimeIn" />
+    </p>
+     <span asp-validation-for ="TimeIn"
+            class ="text-danger"></span>
+    <p>
+        <label asp-for="TimeOut">End Date:</label>
+        <input asp-for="TimeOut" />
+          
+    </p> 
+    <span asp-validation-for ="TimeOut"
+            class ="text-danger"></span>
+     <p>
+        <label asp-for="NrMasina">Numarul masinii:</label>
+        <input asp-for="NrMasina" />
+          
+    </p> 
+    <span asp-validation-for ="NrMasina"
+            class ="text-danger"></span>
+   <input readonly asp-for = "IdPriza" hidden >
+    <p><button type="submit">Submit</button></p>
+</form>

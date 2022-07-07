@@ -1,21 +1,27 @@
 ﻿@model IEnumerable<Statii>
 
+@{
+    ViewData["Title"] = "Statii";
+}
+
+<h2>Index</h2>
 
 <p>
-     @Html.ActionLink("Create New", "Create")
+    <a asp-action="Create">Create New</a>
+   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 </p>
-<table class="table">
+<table class="table" id = "myTable">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Oras)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Adresa)
-            </th>
+                <th>
+                    <a asp-action="Filter" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Nume)</a>
+                </th>
+                <th>
+                    <a asp-action="Filter" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Oras)</a>
+                </th>
+                <th>
+                    <a asp-action="Filter" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Adresa)</a>
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -32,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.Adresa)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdStatie">Edit</a> |
+               <a asp-action="Edit" asp-route-id="@item.IdStatie">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdStatie">Details</a> |
                 <a asp-action="DeleteConfirmation" asp-route-id="@item.IdStatie">Delete</a>
             </td>
