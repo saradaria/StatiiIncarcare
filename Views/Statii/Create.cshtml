@@ -3,24 +3,28 @@
 
 <h2>Create</h2>
 <form method="post">
-    <p>
-        <label asp-for="Nume">Nume:</label>
-        <input asp-for="Nume" />
+    
+        <div class="mb-4">
+          <label asp-for="Nume" for="Nume" class="form-label">Nume</label>
+          <input type="Nume"asp-for="Nume"  class="form-control border-success" id="Nume" placeholder="Introduceti numele statiei">
         <span asp-validation-for ="Nume"
             class ="text-danger"></span>
-    </p>
-    <p>
-        <label asp-for="Oras">Oras:</label>
-        <input asp-for="Oras" />
+        </div>
+
+   <div class="mb-4">
+          <label asp-for="Oras" for="Oras" class="form-label">Oras</label>
+          <input type="Oras"asp-for="Oras"  class="form-control border-success" id="Oras" placeholder="Introduceti orasul in care se afla statia">
         <span asp-validation-for ="Oras"
             class ="text-danger"></span>
-    </p>
-     <p>
-        <label asp-for="Adresa">Adresa:</label>
-        <input asp-for="Adresa" />
+        </div>
+    
+   <div class="mb-4">
+          <label asp-for="Adresa" for="Adresa" class="form-label">Oras</label>
+          <input type="Adresa"asp-for="Adresa"  class="form-control border-success" id="Adresa" placeholder="Introduceti adresa statiei">
         <span asp-validation-for ="Adresa"
             class ="text-danger"></span>
-    </p>
+        </div>
    
-    <p><button type="submit">Submit</button></p>
+    <p><button type="submit" class="btn btn-lg btn-primary" >Submit</button></p>
+
 </form>
