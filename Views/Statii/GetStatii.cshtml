@@ -5,13 +5,12 @@
     ViewData["Title"] = "Statii";
 }
 
-<h2>Afisare statii</h2>
-
+<h3>Afisare statii</h3>
+<br />
 <p>
-    <a asp-action="Create">Create New</a>
-   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+   <input type="text" class="form-control"  aria-describedby="inputGroup-sizing-sm" id="myInput" onkeyup="myFunction()" placeholder="Introduceti orasul dorit">
 </p>
-<table class="table" id = "myTable">
+<table class="table table-striped" id = "myTable">
     <thead>
         <tr>
                 <th>
@@ -39,11 +38,15 @@
                 @Html.DisplayFor(modelItem => item.Adresa)
             </td>
             <td>
-               <a asp-action="Edit" asp-route-id="@item.IdStatie">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdStatie">Details</a> |
-                <a asp-action="DeleteConfirmation" asp-route-id="@item.IdStatie">Delete</a>
+               <a type="button" class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.IdStatie">Edit</a> 
+                <a type="button" class="btn btn-outline-dark" asp-action="Details" asp-route-id="@item.IdStatie">Details</a> 
+                <a  type="button" class="btn btn-outline-dark" asp-action="DeleteConfirmation" asp-route-id="@item.IdStatie">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<br />
+<p>
+    <a type="button" class="btn btn-dark" asp-action="Create">Adauga o statie</a>
+</p>

@@ -96,15 +96,14 @@ namespace StatiiIncarcare.Controllers
             return View("Thanks_add", statie);
         }
 
-        public ViewResult Filter(string sortOrder, string searchString)
+        public ViewResult Filter(string sortOrder)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Oras" : "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nume" : "";
+            ViewBag.OrasSortParm = String.IsNullOrEmpty(sortOrder) ? "Oras" : "";
+            ViewBag.AdresaSortParm = String.IsNullOrEmpty(sortOrder) ? "Adresa" : "";
             var statii= from s in _IncarcareStatiiContext.Statiis
                            select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                statii = statii.Where(s => s.Oras.Contains(searchString) );
-            }
+
             
             switch (sortOrder)
             {

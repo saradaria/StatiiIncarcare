@@ -13,13 +13,12 @@ namespace StatiiIncarcare.Controllers
         {
             _context = context;
         }
-        /*
+        
         public IActionResult Index(int idPriza)
         {
             WeekCalendar saptamana = new WeekCalendar();
 
             DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
-            int i = 0;
             var rezervariPriza = _context.Rezervares.Where(p => p.IdPriza == idPriza && p.TimeIn >= startingDay  && p.TimeIn <=startingDay.AddDays(7)).ToList();
 
             foreach (var x in rezervariPriza)
@@ -28,13 +27,11 @@ namespace StatiiIncarcare.Controllers
                 zi.DataIn = x.TimeIn.ToString("MM/dd/yyyy H:mm");
                 zi.DataOut = x.TimeOut.ToString("MM/dd/yyyy H:mm");
                 zi.NrMasina = x.NrMasina;
-                saptamana.Add(zi);
+                saptamana.Week.Add(zi);
             }
 
             return View();
         }
-
-*/
 
     }
 }
