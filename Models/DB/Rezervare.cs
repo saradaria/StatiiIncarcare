@@ -7,8 +7,8 @@ namespace StatiiIncarcare.Models.DB
     {
         public Guid IdRezervare { get; set; }
         public int IdPriza { get; set; }
-        public DateTime? TimeIn { get; set; }
-        public DateTime? TimeOut { get; set; }
+        public DateTime TimeIn { get; set; }
+        public DateTime TimeOut { get; set; }
         public string? NrMasina { get; set; }
         public int? IdUser { get; set; }
 
