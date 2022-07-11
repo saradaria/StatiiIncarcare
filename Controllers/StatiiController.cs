@@ -24,7 +24,7 @@ namespace StatiiIncarcare.Controllers
 
             return View(_IncarcareStatiiContext.Statiis);
         }
-      
+
 
         public IActionResult DeleteConfirmation(int id)
         {
@@ -33,7 +33,7 @@ namespace StatiiIncarcare.Controllers
             {
                 return NotFound();
             }
-            return View("Delete",statie);
+            return View("Delete", statie);
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace StatiiIncarcare.Controllers
                 .Include(x => x.Prizas)
                 .ThenInclude(p => p.IdTipNavigation)
                 .FirstOrDefault(x => x.IdStatie == id);
-           
+
             if (statie == null)
             {
                 return NotFound();
@@ -72,15 +72,15 @@ namespace StatiiIncarcare.Controllers
             return View(tipsRecord);
             */
 
-          /* Old details version
-           Statii model = new Statii()
-            {
-                Nume = statie.Nume,
-                Oras = statie.Oras,
-                Adresa = statie.Adresa,
-            };
-            return View(model);
-          */
+            /* Old details version
+             Statii model = new Statii()
+              {
+                  Nume = statie.Nume,
+                  Oras = statie.Oras,
+                  Adresa = statie.Adresa,
+              };
+              return View(model);
+            */
         }
 
         public IActionResult Create()
@@ -101,10 +101,10 @@ namespace StatiiIncarcare.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nume" : "";
             ViewBag.OrasSortParm = String.IsNullOrEmpty(sortOrder) ? "Oras" : "";
             ViewBag.AdresaSortParm = String.IsNullOrEmpty(sortOrder) ? "Adresa" : "";
-            var statii= from s in _IncarcareStatiiContext.Statiis
-                           select s;
+            var statii = from s in _IncarcareStatiiContext.Statiis
+                         select s;
 
-            
+
             switch (sortOrder)
             {
                 case "Oras":
@@ -125,74 +125,3 @@ namespace StatiiIncarcare.Controllers
         }
     }
 }
-
-
-
-/*
-[HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(int id, [Bind("IdStatie,Nume,Oras,Adresa")] Statii statie)
-{
-
-    if (id != statie.IdStatie)
-    {
-        return NotFound();
-    }
-
-    if (ModelState.IsValid)
-    {
-        try
-        {
-            _IncarcareStatiiContext.Update(statie);
-            await _IncarcareStatiiContext.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!StatiiExist(statie.IdStatie))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-        return RedirectToAction(nameof(Index));
-    }
-    return View(statie);
-}
-
-private bool StatiiExist(int idStatie)
-{
-    throw new NotImplementedException();
-}
-}
-}
-
-
-  public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
-{
-    if (id == null)
-    {
-        return NotFound();
-    }
-
-    var statie = await _IncarcareStatiiContext.Statiis
-        .AsNoTracking()
-        .FirstOrDefaultAsync(m => m.IdStatie == id);
-    if (statie == null)
-    {
-        return NotFound();
-    }
-
-    if (saveChangesError.GetValueOrDefault())
-    {
-        ViewData["ErrorMessage"] =
-            "Delete failed. Try again, and if the problem persists " +
-            "see your system administrator.";
-    }
-
-    return View(statie);
-}
-*/
-

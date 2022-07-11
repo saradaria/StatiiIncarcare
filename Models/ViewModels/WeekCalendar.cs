@@ -2,6 +2,6 @@
 {
     public class WeekCalendar
     {
-        public IList<DayCalendar> Week { get; set; }
+        public List<RezCalendar> Week { get; set; }
     }
 }

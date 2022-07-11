@@ -1,5 +1,4 @@
-﻿<! -- 
-@model StatiiIncarcare.Models.ViewModels.WeekCalendar;
+﻿@model StatiiIncarcare.Models.ViewModels.WeekCalendar;
 
 <br />
 <div class="cd-schedule loading">
@@ -63,10 +62,10 @@
 			<li class="events-group">
 				<div class="top-info"><span>Monday</span></div>
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[0].DataIn" data-end="item.Week[0].DataOut" data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Monday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-1">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -77,10 +76,10 @@
 				<div class="top-info"><span>Tuesday</span></div>
 
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[1].DataIn" data-end="item.Week[0].DataOut"  data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Tuesday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-2">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -91,10 +90,10 @@
 				<div class="top-info"><span>Wednesday</span></div>
 
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[2].DataIn" data-end="item.Week[0].DataOut"  data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Wednesday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-3">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -105,10 +104,10 @@
 				<div class="top-info"><span>Thursday</span></div>
 
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[3].DataIn" data-end="item.Week[0].DataOut" data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Thursday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-4">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -119,10 +118,10 @@
 				<div class="top-info"><span>Friday</span></div>
 
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[4].DataIn" data-end="item.Week[0].DataOut" data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Friday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-5">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -132,10 +131,10 @@
       <li class="events-group">
 				<div class="top-info"><span>Saturday</span></div>
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[5].DataIn" data-end="item.Week[0].DataOut"  data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Saturday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-6">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}
@@ -147,10 +146,10 @@
       <li class="events-group">
 				<div class="top-info"><span>Sunday</span></div>
 				<ul>
-					@foreach(var item in Model){
-					<li class="single-event" data-start="item.Week[6].DataIn" data-end="item.Week[0].DataOut"  data-event="event-1">
+					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Sunday)){
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-7">
 						<a href="#0">
-							<em class="event-name">Rezervat</em>
+							<em class="event-name">@item.NrMasina</em>
 						</a>
 					</li>
 					}

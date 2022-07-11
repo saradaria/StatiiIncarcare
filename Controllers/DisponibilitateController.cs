@@ -17,20 +17,26 @@ namespace StatiiIncarcare.Controllers
         public IActionResult Index(int idPriza)
         {
             WeekCalendar saptamana = new WeekCalendar();
+            saptamana.Week = new List<RezCalendar>();
+
 
             DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
-            var rezervariPriza = _context.Rezervares.Where(p => p.IdPriza == idPriza && p.TimeIn >= startingDay  && p.TimeIn <=startingDay.AddDays(7)).ToList();
+            var rezervariPriza = _context.Rezervares
+                .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay  && p.TimeIn.Date <=startingDay.AddDays(7))
+                .ToList();
 
             foreach (var x in rezervariPriza)
             {
-                DayCalendar zi = new DayCalendar();
-                zi.DataIn = x.TimeIn.ToString("MM/dd/yyyy H:mm");
-                zi.DataOut = x.TimeOut.ToString("MM/dd/yyyy H:mm");
-                zi.NrMasina = x.NrMasina;
-                saptamana.Week.Add(zi);
+                RezCalendar rezervare = new RezCalendar();
+                rezervare.DataIn = x.TimeIn.ToString("HH:mm");
+                rezervare.DataOut = x.TimeOut.ToString("HH:mm");
+                rezervare.NrMasina = x.NrMasina;
+                rezervare.ZiCurenta = x.TimeIn.DayOfWeek;
+                saptamana.Week.Add(rezervare);
+
             }
 
-            return View();
+            return View(saptamana);
         }
 
     }

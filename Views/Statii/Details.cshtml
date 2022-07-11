@@ -8,9 +8,12 @@
             <th>Nume</th>
             <th>Oras</th>
             <th>Adresa</th>
+            <th>Show on Map</th>
         </tr>
        </thead>
+        @{
 
+        }
        <tbody>
         <td> @Model.Nume</td>
         <td>@Model.Oras</td>
@@ -24,6 +27,7 @@
             <th>Numar priza</th>
             <th>Tip Priza</th>
             <th>Rezervare</th>
+            <th>Disponibilitate</th>
         </tr>
     </thead>
     <tbody>
@@ -38,12 +42,15 @@
             <td>
               <a   type="button" class="btn btn-success" asp-controller = "Booking" asp-action="NewBooking" asp-route-idPriza="@priza.IdPriza">Rezervare</a>
             </td>
+            <td>
+               <a  type="button" class="btn btn-outline-dark" asp-controller = "Disponibilitate" asp-action="Index" asp-route-idPriza="@priza.IdPriza">Disponibilitate</a>
+
+            </td>
          </tr>
         
 }
     </tbody>
 </table>
 
-<a  type="button" class="btn btn-outline-dark" asp-controller = "Prize" asp-action="AddPriza" asp-route-idStatie="@Model.IdStatie">Adauga priza</a>
 
  
