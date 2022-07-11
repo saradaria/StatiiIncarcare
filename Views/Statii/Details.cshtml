@@ -8,12 +8,9 @@
             <th>Nume</th>
             <th>Oras</th>
             <th>Adresa</th>
-            <th>Show on Map</th>
         </tr>
        </thead>
-        @{
 
-        }
        <tbody>
         <td> @Model.Nume</td>
         <td>@Model.Oras</td>
@@ -52,5 +49,6 @@
     </tbody>
 </table>
 
+<a  type="button" class="btn btn-outline-dark" asp-controller = "Prize" asp-action="AddPriza" asp-route-idStatie="@Model.IdStatie">Adauga priza</a>
 
  

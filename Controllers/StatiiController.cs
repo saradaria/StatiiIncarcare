@@ -121,7 +121,7 @@ namespace StatiiIncarcare.Controllers
                     break;
             }
 
-            return View(statii.ToList());
+            return View("GetStatii",statii);
         }
     }
 }

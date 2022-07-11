@@ -57,10 +57,10 @@ namespace StatiiIncarcare.Controllers
                 }
                
 
-                var eroareRezervarecase1 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn <= model.TimeIn && p.TimeOut >= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
-                var eroareRezervarecase2 = _incarcareStatiiContext.Rezervares.Where (p=> p.TimeIn >= model.TimeIn && p.TimeOut>=model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
-                var eroareRezervarecase3 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn <= model.TimeIn && p.TimeOut >= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
-                var eroareRezervarecase4 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn >= model.TimeIn && p.TimeOut <= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
+                var eroareRezervarecase1 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn.Date == model.TimeIn.Value.Date && p.TimeIn <= model.TimeIn && p.TimeOut >= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
+                var eroareRezervarecase2 = _incarcareStatiiContext.Rezervares.Where (p =>  p.TimeIn.Date == model.TimeIn.Value.Date && p.TimeIn >= model.TimeIn && p.TimeOut>=model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
+                var eroareRezervarecase3 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn.Date == model.TimeIn.Value.Date  && p.TimeIn <= model.TimeIn && p.TimeOut >= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
+                var eroareRezervarecase4 = _incarcareStatiiContext.Rezervares.Where(p => p.TimeIn.Date == model.TimeIn.Value.Date  &&  p.TimeIn >= model.TimeIn && p.TimeOut <= model.TimeIn && p.IdPriza == model.IdPriza).FirstOrDefault();
 
 
                 if (eroareRezervarecase1 != null || eroareRezervarecase2 != null || eroareRezervarecase3 != null || eroareRezervarecase4 != null)
