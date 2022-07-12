@@ -1,12 +1,7 @@
 ﻿@model StatiiIncarcare.Models.ViewModels.WeekCalendar;
-
-<a   type="button" style = "position:relative; right:-160px ;" class="btn btn-success" asp-controller = "Disponibilitate" asp-route-idPriza=@Model.IdPriza asp-route-actiune=-1 asp-action="Index" >Saptamana anterioara</a>
-<a   type="button" style = "position:relative; left:860px;"class="btn btn-success" asp-controller = "Disponibilitate" asp-route-idPriza=@Model.IdPriza asp-route-actiune=1 asp-action="Index" >Saptamana viitoare</a>
+<a   type="button" class="btn btn-success" asp-controller = "Disponibilitate" asp-action="Index" >Saptamana curenta</a>
 
 <br />
-<div>
-
-</div>
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
@@ -62,19 +57,14 @@
 			
 		</ul>
 	</div> <!-- .timeline -->
-	<div>
+
 	<div class="events">
 		<ul class="wrap">
 			<li class="events-group">
-				<div class="top-info"><span>
-					Monday
-					<br />
-					@Model.CurentMonday.ToString("d")
-					</span>
-				</div>
+				<div class="top-info"><span>Monday</span></div>
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Monday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm"); data-end=@item.DataOut.ToString("HH:mm") data-event="event-1">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-1">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -84,16 +74,11 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info">
-					<span>Tuesday<br />
-					@Model.CurentMonday.AddDays(1).ToString("d")</span>
-					<br />
-
-				</div>
+				<div class="top-info"><span>Tuesday</span></div>
 
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Tuesday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut.ToString("HH:mm")  data-event="event-2">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-2">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -103,12 +88,11 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Wednesday<br />
-					@Model.CurentMonday.AddDays(2).ToString("d")</span></div>
+				<div class="top-info"><span>Wednesday</span></div>
 
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Wednesday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut.ToString("HH:mm")  data-event="event-3">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-3">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -118,12 +102,11 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Thursday<br />
-					@Model.CurentMonday.AddDays(3).ToString("d")</span></div>
+				<div class="top-info"><span>Thursday</span></div>
 
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Thursday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut..ToString("HH:mm") data-event="event-4">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-4">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -133,14 +116,11 @@
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Friday
-					<br />
-					@Model.CurentMonday.AddDays(4).ToString("d")
-				</span></div>
+				<div class="top-info"><span>Friday</span></div>
 
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Friday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut.ToString("HH:mm") data-event="event-1">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut data-event="event-1">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -150,11 +130,10 @@
 			</li>
       <!--        -->
       <li class="events-group">
-				<div class="top-info"><span>Saturday<br />
-					@Model.CurentMonday.AddDays(5).ToString("d")</span></div>
+				<div class="top-info"><span>Saturday</span></div>
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Saturday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut.ToString("HH:mm")  data-event="event-6">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-6">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
@@ -166,11 +145,10 @@
       
       <!--        -->
       <li class="events-group">
-				<div class="top-info"><span>Sunday<br />
-					@Model.CurentMonday.AddDays(6).ToString("d")</span></div>
+				<div class="top-info"><span>Sunday</span></div>
 				<ul>
 					@foreach(var item in Model.Week.Where(x => x.ZiCurenta == DayOfWeek.Sunday)){
-					<li class="single-event" data-start=@item.DataIn.ToString("HH:mm") data-end=@item.DataOut.ToString("HH:mm")  data-event="event-7">
+					<li class="single-event" data-start=@item.DataIn data-end=@item.DataOut  data-event="event-7">
 						<a href="#0">
 							<em class="event-name">@item.NrMasina</em>
 						</a>
