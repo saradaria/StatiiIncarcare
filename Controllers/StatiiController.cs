@@ -83,6 +83,32 @@ namespace StatiiIncarcare.Controllers
             */
         }
 
+        public ActionResult EditView(int id)
+        {
+            var statie = _IncarcareStatiiContext.Statiis
+                .Where(x => x.IdStatie == id).FirstOrDefault();
+
+            if (statie == null)
+            {
+                return NotFound();
+            }
+
+            return View(statie);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Statii statie)
+        {
+           var stationToBeUpdated = _IncarcareStatiiContext.Statiis
+                .Where(x => x.IdStatie == statie.IdStatie).FirstOrDefault(); ;
+            stationToBeUpdated.Adresa = statie.Adresa;
+            stationToBeUpdated.Nume= statie.Nume;
+            stationToBeUpdated.Oras = statie.Oras;
+
+            _IncarcareStatiiContext.SaveChanges();
+            return RedirectToAction("GetStatii");
+        }
+
         public IActionResult Create()
         {
             return View("Create");
@@ -96,6 +122,9 @@ namespace StatiiIncarcare.Controllers
             return View("Thanks_add", statie);
         }
 
+
+
+       
         public ViewResult Filter(string sortOrder)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Nume" : "";

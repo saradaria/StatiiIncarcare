@@ -1,54 +1,59 @@
 ﻿@model Statii
 
-   
-        <h4>Detalii Statie</h4> 
-        <table class="table table-striped" id = "myTable">
-        <thead>
+
+<h4>Detalii Statie</h4>
+<table class="table table-striped" id="myTable">
+    <thead>
         <tr>
             <th>Nume</th>
             <th>Oras</th>
             <th>Adresa</th>
+            <th>View Chart</th>
         </tr>
-       </thead>
+    </thead>
 
-       <tbody>
-        <td> @Model.Nume</td>
-        <td>@Model.Oras</td>
-        <td>@Model.Adresa</h2>
-  </tbody>
+    <tbody>
+    <td> @Model.Nume</td>
+    <td>@Model.Oras</td>
+    <td>@Model.Adresa</h2>
+    <td>
+        <a type="button" class="btn btn-success" asp-controller="Chart" asp-action="Index" asp-route-id="@Model.IdStatie">View Chart</a>
+    </td>
+    </tbody>
 </table>
 
-         <table class="table table-striped" id = "myTable">
+<table class="table table-striped" id="myTable">
     <thead>
         <tr>
             <th>Numar priza</th>
             <th>Tip Priza</th>
             <th>Rezervare</th>
             <th>Disponibilitate</th>
+
         </tr>
     </thead>
     <tbody>
-   @foreach (var priza in Model.Prizas) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => priza.IdPriza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => priza.IdTipNavigation.Nume)
-            </td>
-            <td>
-              <a   type="button" class="btn btn-success" asp-controller = "Booking" asp-action="NewBooking" asp-route-idPriza="@priza.IdPriza">Rezervare</a>
-            </td>
-            <td>
-               <a  type="button" class="btn btn-outline-dark" asp-controller = "Disponibilitate" asp-action="Index" asp-route-idPriza="@priza.IdPriza">Disponibilitate</a>
+        @foreach (var priza in Model.Prizas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => priza.IdPriza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => priza.IdTipNavigation.Nume)
+                </td>
+                <td>
+                    <a type="button" class="btn btn-success" asp-controller="Booking" asp-action="NewBooking" asp-route-idPriza="@priza.IdPriza">Rezervare</a>
+                </td>
+                <td>
+                    <a type="button" class="btn btn-outline-dark" asp-controller="Disponibilitate" asp-action="Index"asp-route-actiune=0 asp-route-idPriza="@priza.IdPriza">Disponibilitate</a>
+                </td>
 
-            </td>
-         </tr>
-        
-}
+            </tr>
+
+        }
     </tbody>
 </table>
 
-<a  type="button" class="btn btn-outline-dark" asp-controller = "Prize" asp-action="AddPriza" asp-route-idStatie="@Model.IdStatie">Adauga priza</a>
+<a type="button" class="btn btn-outline-dark" asp-controller="Prize" asp-action="AddPriza" asp-route-idStatie="@Model.IdStatie">Adauga priza</a>
 
- 

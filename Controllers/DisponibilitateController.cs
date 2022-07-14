@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StatiiIncarcare.Models.DB;
 using StatiiIncarcare.Models.ViewModels;
+using StatiiIncarcare.Utils;
 using System.Linq;
 
 namespace StatiiIncarcare.Controllers
@@ -15,28 +16,31 @@ namespace StatiiIncarcare.Controllers
         }
 
         // actiune : 1 - next week ; -1 prev week
-        public IActionResult Index(int idPriza,int actiune)
+        public IActionResult Index(int idPriza, int actiune)
         {
             WeekCalendar saptamana = new WeekCalendar();
             saptamana.Week = new List<RezCalendar>();
 
-
-            DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
-            
-            if(actiune == 1)
+            if (actiune == 0)
             {
-                startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(7);
+                DateTimeUtils.StartingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
+            }
+
+
+            if (actiune == 1)
+            {
+                DateTimeUtils.StartingDay = DateTimeUtils.StartingDay.AddDays(7);
             }
 
             if (actiune == -1)
             {
-                startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(-7);
+                DateTimeUtils.StartingDay = DateTimeUtils.StartingDay.AddDays(-7);
             }
 
-            saptamana.CurentMonday = startingDay;
+            saptamana.CurentMonday = DateTimeUtils.StartingDay;
             saptamana.IdPriza = idPriza;
             var rezervariPriza = _context.Rezervares
-                .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay && p.TimeIn.Date <= startingDay.AddDays(7))
+                .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= DateTimeUtils.StartingDay.Date && p.TimeIn.Date <= DateTimeUtils.StartingDay.Date.AddDays(7))
                 .ToList();
 
             foreach (var x in rezervariPriza)
@@ -54,71 +58,60 @@ namespace StatiiIncarcare.Controllers
         }
 
 
-/*
-        public IActionResult PrevWeek(int idPriza)
-        {
-            WeekCalendar saptamana = new WeekCalendar();
-            saptamana.Week = new List<RezCalendar>();
+        /*
+                public IActionResult PrevWeek(int idPriza)
+                {
+                    WeekCalendar saptamana = new WeekCalendar();
+                    saptamana.Week = new List<RezCalendar>();
 
 
-            DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(-7);
-            var rezervariPriza = _context.Rezervares
-                .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay && p.TimeIn.Date <= startingDay.AddDays(7))
-                .ToList();
+                    DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(-7);
+                    var rezervariPriza = _context.Rezervares
+                        .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay && p.TimeIn.Date <= startingDay.AddDays(7))
+                        .ToList();
 
-            foreach (var x in rezervariPriza)
-            {
-                RezCalendar rezervare = new RezCalendar();
-                rezervare.DataIn = x.TimeIn.ToString("HH:mm");
-                rezervare.DataOut = x.TimeOut.ToString("HH:mm");
-                rezervare.NrMasina = x.NrMasina;
-                rezervare.ZiCurenta = x.TimeIn.DayOfWeek;
-                saptamana.Week.Add(rezervare);
+                    foreach (var x in rezervariPriza)
+                    {
+                        RezCalendar rezervare = new RezCalendar();
+                        rezervare.DataIn = x.TimeIn.ToString("HH:mm");
+                        rezervare.DataOut = x.TimeOut.ToString("HH:mm");
+                        rezervare.NrMasina = x.NrMasina;
+                        rezervare.ZiCurenta = x.TimeIn.DayOfWeek;
+                        saptamana.Week.Add(rezervare);
 
-            }
+                    }
 
-            return View(saptamana);
-        }
-
-
-        public IActionResult NextWeek(int idPriza)
-        {
-            WeekCalendar saptamana = new WeekCalendar();
-            saptamana.Week = new List<RezCalendar>();
+                    return View(saptamana);
+                }
 
 
-            DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(7);
-            var rezervariPriza = _context.Rezervares
-                .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay && p.TimeIn.Date <= startingDay.AddDays(7))
-                .ToList();
+                public IActionResult NextWeek(int idPriza)
+                {
+                    WeekCalendar saptamana = new WeekCalendar();
+                    saptamana.Week = new List<RezCalendar>();
 
-            foreach (var x in rezervariPriza)
-            {
-                RezCalendar rezervare = new RezCalendar();
-                rezervare.DataIn = x.TimeIn.ToString("HH:mm");
-                rezervare.DataOut = x.TimeOut.ToString("HH:mm");
-                rezervare.NrMasina = x.NrMasina;
-                rezervare.ZiCurenta = x.TimeIn.DayOfWeek;
-                saptamana.Week.Add(rezervare);
 
-            }
+                    DateTime startingDay = DateTime.Now.StartOfWeek(DayOfWeek.Monday).AddDays(7);
+                    var rezervariPriza = _context.Rezervares
+                        .Where(p => p.IdPriza == idPriza && p.TimeIn.Date >= startingDay && p.TimeIn.Date <= startingDay.AddDays(7))
+                        .ToList();
 
-            return View(saptamana);
-        }
+                    foreach (var x in rezervariPriza)
+                    {
+                        RezCalendar rezervare = new RezCalendar();
+                        rezervare.DataIn = x.TimeIn.ToString("HH:mm");
+                        rezervare.DataOut = x.TimeOut.ToString("HH:mm");
+                        rezervare.NrMasina = x.NrMasina;
+                        rezervare.ZiCurenta = x.TimeIn.DayOfWeek;
+                        saptamana.Week.Add(rezervare);
 
-*/
+                    }
 
-    }
-}
-        
-        
+                    return View(saptamana);
+                }
 
-    public static class DateTimeExtensions
-{
-    public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
-    {
-        int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
-        return dt.AddDays(-1 * diff).Date;
+        */
+
     }
 }
 
